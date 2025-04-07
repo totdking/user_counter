@@ -1,0 +1,436 @@
+{
+    "address": "2JzRQy8oxEXnp4K63FqVTBaqESazr89fuvvkoMEADMpg",
+    "metadata": {
+      "name": "user_counter",
+      "version": "0.1.0",
+      "spec": "0.1.0",
+      "description": "Created with Anchor",
+      "address": "2JzRQy8oxEXnp4K63FqVTBaqESazr89fuvvkoMEADMpg"
+    },
+    "instructions": [
+      {
+        "name": "activate",
+        "discriminator": [
+          194,
+          203,
+          35,
+          100,
+          151,
+          55,
+          170,
+          82
+        ],
+        "accounts": [
+          {
+            "name": "owner",
+            "writable": true,
+            "signer": true,
+            "relations": [
+              "user_account"
+            ]
+          },
+          {
+            "name": "user_account",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    117,
+                    115,
+                    101,
+                    114
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "owner"
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "add",
+        "discriminator": [
+          41,
+          249,
+          249,
+          146,
+          197,
+          111,
+          56,
+          181
+        ],
+        "accounts": [
+          {
+            "name": "owner",
+            "writable": true,
+            "signer": true,
+            "relations": [
+              "user_account"
+            ]
+          },
+          {
+            "name": "user_account",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    117,
+                    115,
+                    101,
+                    114
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "owner"
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "close",
+        "discriminator": [
+          98,
+          165,
+          201,
+          177,
+          108,
+          65,
+          206,
+          96
+        ],
+        "accounts": [
+          {
+            "name": "owner",
+            "writable": true,
+            "signer": true,
+            "relations": [
+              "user_account"
+            ]
+          },
+          {
+            "name": "user_account",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    117,
+                    115,
+                    101,
+                    114
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "owner"
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "initialize",
+        "discriminator": [
+          175,
+          175,
+          109,
+          31,
+          13,
+          152,
+          155,
+          237
+        ],
+        "accounts": [
+          {
+            "name": "owner",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "user_account",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    117,
+                    115,
+                    101,
+                    114
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "owner"
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "sub",
+        "discriminator": [
+          24,
+          41,
+          208,
+          39,
+          211,
+          133,
+          97,
+          210
+        ],
+        "accounts": [
+          {
+            "name": "owner",
+            "writable": true,
+            "signer": true,
+            "relations": [
+              "user_account"
+            ]
+          },
+          {
+            "name": "user_account",
+            "writable": true,
+            "pda": {
+              "seeds": [
+                {
+                  "kind": "const",
+                  "value": [
+                    117,
+                    115,
+                    101,
+                    114
+                  ]
+                },
+                {
+                  "kind": "account",
+                  "path": "owner"
+                }
+              ]
+            }
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      }
+    ],
+    "accounts": [
+      {
+        "name": "User",
+        "discriminator": [
+          159,
+          117,
+          95,
+          227,
+          239,
+          151,
+          58,
+          236
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "user_counter::instructions::close::Event",
+        "discriminator": [
+          249,
+          231,
+          29,
+          98,
+          35,
+          177,
+          118,
+          27
+        ]
+      },
+      {
+        "name": "user_counter::instructions::initialize::Event",
+        "discriminator": [
+          249,
+          231,
+          29,
+          98,
+          35,
+          177,
+          118,
+          27
+        ]
+      },
+      {
+        "name": "user_counter::state::Event",
+        "discriminator": [
+          249,
+          231,
+          29,
+          98,
+          35,
+          177,
+          118,
+          27
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "NotSigner",
+        "msg": "Not signer"
+      },
+      {
+        "code": 6001,
+        "name": "NotActive",
+        "msg": "Account is not set active"
+      },
+      {
+        "code": 6002,
+        "name": "ActiveAlready",
+        "msg": "Account is already active"
+      },
+      {
+        "code": 6003,
+        "name": "Closed",
+        "msg": "Account is closed"
+      },
+      {
+        "code": 6004,
+        "name": "Overflow",
+        "msg": "Beyond the limit of counter"
+      },
+      {
+        "code": 6005,
+        "name": "Underflow",
+        "msg": "You cannot have negative as counter"
+      }
+    ],
+    "types": [
+      {
+        "name": "User",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "pubkey"
+            },
+            {
+              "name": "counter",
+              "type": "u64"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            }
+          ]
+        }
+      },
+      {
+        "name": "user_counter::instructions::close::Event",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "pubkey"
+            },
+            {
+              "name": "counter",
+              "type": "u64"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            },
+            {
+              "name": "timestamp",
+              "type": "u64"
+            }
+          ]
+        }
+      },
+      {
+        "name": "user_counter::instructions::initialize::Event",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "pubkey"
+            },
+            {
+              "name": "counter",
+              "type": "u64"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            },
+            {
+              "name": "timestamp",
+              "type": "u64"
+            }
+          ]
+        }
+      },
+      {
+        "name": "user_counter::state::Event",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "pubkey"
+            },
+            {
+              "name": "counter",
+              "type": "u64"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            },
+            {
+              "name": "timestamp",
+              "type": "u64"
+            }
+          ]
+        }
+      }
+    ]
+  }

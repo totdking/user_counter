@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Solana DApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #14f195;
+        }
+        
+        button {
+            background-color: #14f195;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0fd881;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .wallet-status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .connected {
+            background-color: #e6f7e6;
+            color: #2e7d32;
+        }
+        
+        .disconnected {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .counter {
+            font-size: 24px;
+            margin: 20px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Solana DApp</h1>
+        
+        <div id="walletStatus" class="wallet-status disconnected">
+            Wallet not connected
+        </div>
+        
+        <button id="connectWallet">Connect Wallet</button>
+        
+        <div class="counter">
+            Counter: <span id="counterValue">0</span>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="activateBtn" disabled>Activate</button>
+            <button id="addBtn" disabled>Add</button>
+            <button id="minusBtn" disabled>Minus</button>
+            <button id="closeBtn" disabled>Close</button>
+        </div>
+    </div>
+
+    <!-- Include Solana Web3.js -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <!-- Include Phantom wallet adapter -->
+    <script src="https://unpkg.com/@solana/wallet-adapter-phantom@latest/lib/index.iife.min.js"></script>
+    
+    <script>
+        // DOM elements
+        const connectWalletBtn = document.getElementById('connectWallet');
+        const walletStatusDiv = document.getElementById('walletStatus');
+        const activateBtn = document.getElementById('activateBtn');
+        const addBtn = document.getElementById('addBtn');
+        const minusBtn = document.getElementById('minusBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const counterValueSpan = document.getElementById('counterValue');
+        
+        // App state
+        let walletConnected = false;
+        let walletPublicKey = null;
+        let counter = 0;
+        
+        // Initialize wallet adapter
+        const phantom = new window.PhantomWalletAdapter();
+        
+        // Connect wallet button click handler
+        connectWalletBtn.addEventListener('click', async () => {
+            try {
+                // Connect to wallet
+                await phantom.connect();
+                walletPublicKey = phantom.publicKey;
+                walletConnected = true;
+                
+                // Update UI
+                walletStatusDiv.textContent = `Connected: ${walletPublicKey.toBase58().slice(0, 6)}...${walletPublicKey.toBase58().slice(-4)}`;
+                walletStatusDiv.className = 'wallet-status connected';
+                connectWalletBtn.textContent = 'Disconnect';
+                
+                // Enable buttons
+                activateBtn.disabled = false;
+                addBtn.disabled = false;
+                minusBtn.disabled = false;
+                closeBtn.disabled = false;
+                
+                console.log('Wallet connected:', walletPublicKey.toBase58());
+            } catch (error) {
+                console.error('Error connecting wallet:', error);
+                alert('Failed to connect wallet');
+            }
+        });
+        
+        // Disconnect wallet (toggle functionality)
+        connectWalletBtn.addEventListener('click', async () => {
+            if (walletConnected) {
+                try {
+                    await phantom.disconnect();
+                    walletConnected = false;
+                    walletPublicKey = null;
+                    
+                    // Update UI
+                    walletStatusDiv.textContent = 'Wallet not connected';
+                    walletStatusDiv.className = 'wallet-status disconnected';
+                    connectWalletBtn.textContent = 'Connect Wallet';
+                    
+                    // Disable buttons
+                    activateBtn.disabled = true;
+                    addBtn.disabled = true;
+                    minusBtn.disabled = true;
+                    closeBtn.disabled = true;
+                    
+                    console.log('Wallet disconnected');
+                } catch (error) {
+                    console.error('Error disconnecting wallet:', error);
+                }
+            }
+        });
+        
+        // Button event handlers
+        activateBtn.addEventListener('click', () => {
+            alert('Activate button clicked! This would trigger a blockchain transaction in a real DApp.');
+        });
+        
+        addBtn.addEventListener('click', () => {
+            counter++;
+            counterValueSpan.textContent = counter;
+            console.log('Counter increased to:', counter);
+        });
+        
+        minusBtn.addEventListener('click', () => {
+            counter--;
+            counterValueSpan.textContent = counter;
+            console.log('Counter decreased to:', counter);
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            alert('Close button clicked! This would trigger a blockchain transaction in a real DApp.');
+        });
+    </script>
+</body>
+</html>
